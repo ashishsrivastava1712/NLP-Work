@@ -9,11 +9,29 @@ Run with:
 
 import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Add parent directory to path for imports
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
 
 import streamlit as st
-from src.chatbot import RetrievalChatbot
-from src.qa_dataset import QA_DATASET
+
+try:
+    from src.chatbot import RetrievalChatbot
+    from src.qa_dataset import QA_DATASET
+except ImportError:
+    # Fallback for Streamlit Cloud
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("chatbot", os.path.join(parent_dir, "src", "chatbot.py"))
+    chatbot_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(chatbot_module)
+    RetrievalChatbot = chatbot_module.RetrievalChatbot
+    
+    spec = importlib.util.spec_from_file_location("qa_dataset", os.path.join(parent_dir, "src", "qa_dataset.py"))
+    dataset_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(dataset_module)
+    QA_DATASET = dataset_module.QA_DATASET
 
 # ============================================================================
 # PAGE CONFIGURATION

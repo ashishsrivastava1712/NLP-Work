@@ -7,8 +7,13 @@ Main chatbot implementation using TF-IDF and cosine similarity.
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from .text_preprocessor import TextPreprocessor
-from .qa_dataset import QA_DATASET
+
+try:
+    from .text_preprocessor import TextPreprocessor
+    from .qa_dataset import QA_DATASET
+except ImportError:
+    from src.text_preprocessor import TextPreprocessor
+    from src.qa_dataset import QA_DATASET
 
 
 class RetrievalChatbot:

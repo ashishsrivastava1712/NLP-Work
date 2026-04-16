@@ -10,7 +10,14 @@ Usage:
 """
 
 import sys
-from src.chatbot import RetrievalChatbot
+import os
+
+try:
+    from src.chatbot import RetrievalChatbot
+except ImportError:
+    # Add parent directory to path if needed
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from src.chatbot import RetrievalChatbot
 
 
 def run_demo():
