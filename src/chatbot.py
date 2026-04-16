@@ -5,15 +5,25 @@ Main chatbot implementation using TF-IDF and cosine similarity.
 """
 
 import numpy as np
+import os
+import sys
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+# Handle imports for both local and cloud execution
 try:
-    from .text_preprocessor import TextPreprocessor
-    from .qa_dataset import QA_DATASET
+    from text_preprocessor import TextPreprocessor
+    from qa_dataset import QA_DATASET
 except ImportError:
-    from src.text_preprocessor import TextPreprocessor
-    from src.qa_dataset import QA_DATASET
+    try:
+        from .text_preprocessor import TextPreprocessor
+        from .qa_dataset import QA_DATASET
+    except ImportError:
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        if current_dir not in sys.path:
+            sys.path.insert(0, current_dir)
+        from text_preprocessor import TextPreprocessor
+        from qa_dataset import QA_DATASET
 
 
 class RetrievalChatbot:

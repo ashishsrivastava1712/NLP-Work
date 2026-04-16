@@ -12,12 +12,14 @@ Usage:
 import sys
 import os
 
-try:
-    from src.chatbot import RetrievalChatbot
-except ImportError:
-    # Add parent directory to path if needed
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from src.chatbot import RetrievalChatbot
+# Add src directory to path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+src_dir = os.path.join(current_dir, "src")
+
+if src_dir not in sys.path:
+    sys.path.insert(0, src_dir)
+
+from chatbot import RetrievalChatbot
 
 
 def run_demo():
