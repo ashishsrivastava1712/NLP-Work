@@ -1,0 +1,78 @@
+DEMO COMMANDS TO TRY
+════════════════════════════════════════════════════════════════════════════════
+
+After setting up, try these commands in order:
+
+1. VERIFY INSTALLATION (First time only)
+   $ python tests/test_chatbot.py
+   → Shows ✅ if everything is installed correctly
+
+2. RUN DEMO (Quick 5-second test)
+   $ python main.py
+   → Shows 5 test questions and answers
+   → Best for: Quick demonstration
+
+3. RUN INTERACTIVE (Chat with bot)
+   $ python main.py -i
+   → Then type: "What is Python?"
+   → Then type: "Tell me about machine learning"
+   → Then type: "quit" to exit
+   → Best for: Testing custom questions
+
+4. RUN WEB UI (Beautiful interface)
+   $ streamlit run ui/streamlit_chatbot.py
+   → Opens in browser at http://localhost:8501
+   → Best for: Professional demo
+
+5. VIEW PROJECT STRUCTURE
+   $ tree /F
+   → Shows all files and folders
+   → Best for: Understanding organization
+
+════════════════════════════════════════════════════════════════════════════════
+
+EXPECTED OUTPUT EXAMPLES
+════════════════════════════════════════════════════════════════════════════════
+
+Demo Mode (python main.py):
+──────────────────────────────────────────────────────────────────
+
+✓ Chatbot initialized with 20 Q&A pairs
+Testing with sample queries:
+
+[Test 1/5]
+
+You: What is machine learning?
+Bot: Machine learning is a subset of artificial intelligence...
+📊 Similarity Score: 100.00%
+🎯 Matched Question: What is machine learning?
+
+[Test 2/5]
+
+You: Tell me about Python
+Bot: Python is a high-level, interpreted programming language...
+📊 Similarity Score: 100.00%
+🎯 Matched Question: What is Python?
+
+
+Interactive Mode (python main.py -i):
+──────────────────────────────────────────────────────────────────
+
+👤 You: What is NLP?
+🤖 Bot: Natural Language Processing (NLP) is a branch of...
+📊 Similarity: 100%
+🎯 Matched: What is NLP?
+
+👤 You: Tell me about AI
+🤖 Bot: Artificial Intelligence (AI) is the simulation...
+📊 Similarity: 95%
+🎯 Matched: What is artificial intelligence?
+
+👤 You: How to make pizza?
+🤖 Bot: I didn't understand that. Could you please rephrase?
+📊 Similarity: 5%
+
+👤 You: quit
+🤖 Bot: Goodbye! Have a great day!
+
+════════════════════════════════════════════════════════════════════════════════
